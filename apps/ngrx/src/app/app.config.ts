@@ -5,6 +5,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { appRoutes } from './app.routes';
+import { booksFeature } from './feature-creator/+store/reducer';
 import { BooksEffect } from './traditional/+store/effects';
 import { booksReducer } from './traditional/+store/reducer';
 
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(),
     provideState('traditional-books', booksReducer),
+    provideState(booksFeature.name, booksFeature.reducer),
     provideEffects(BooksEffect),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
