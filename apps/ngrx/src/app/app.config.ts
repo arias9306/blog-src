@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(),
     provideState('traditional-books', booksReducer),
-    provideState(booksFeature.name, booksFeature.reducer),
+    provideState(booksFeature),
     provideEffects(BooksEffect),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
