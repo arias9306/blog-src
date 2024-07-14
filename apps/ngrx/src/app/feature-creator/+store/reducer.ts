@@ -1,4 +1,4 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { LoadBooksActions } from './actions';
 
 export interface Book {
@@ -15,15 +15,13 @@ export interface Book {
 export interface State {
   books: Book[];
   isLoading: boolean;
-}
-
-export interface AppState {
-  'traditional-books': State;
+  query: string;
 }
 
 export const initialState: State = {
   books: [],
   isLoading: false,
+  query: '',
 };
 
 export const booksFeature = createFeature({
@@ -38,6 +36,11 @@ export const booksFeature = createFeature({
       })
     )
   ),
+  extraSelectors: ({ selectQuery, selectBooks }) => ({
+    selectFilteredBooks: createSelector(selectQuery, selectBooks, (query, books) =>
+      books.filter((book) => book.title.includes(query))
+    ),
+  }),
 });
 
 // export const { name, reducer, selectBooksState, selectBooks, selectIsLoading } = booksFeature;
