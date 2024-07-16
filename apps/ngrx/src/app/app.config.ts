@@ -7,7 +7,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { appRoutes } from './app.routes';
 import { booksFeature } from './feature-creator/+store/reducer';
 import { BooksEffect } from './traditional/+store/effects';
-import { booksReducer } from './traditional/+store/reducer';
+import { booksReducer, metaReducers } from './traditional/+store/reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(appRoutes),
     provideHttpClient(),
     provideStore(),
-    provideState('traditional-books', booksReducer),
+    provideState('traditional-books', booksReducer, { metaReducers }),
     provideState(booksFeature),
     provideEffects(BooksEffect),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),

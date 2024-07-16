@@ -43,4 +43,5 @@ export const booksFeature = createFeature({
   }),
 });
 
-// export const { name, reducer, selectBooksState, selectBooks, selectIsLoading } = booksFeature;
+export const { name, reducer, selectBooksState, selectBooks, selectIsLoading, selectQuery, selectFilteredBooks } =
+  booksFeature;
