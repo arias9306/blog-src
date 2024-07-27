@@ -1,17 +1,22 @@
 import { Component, computed, effect, Signal, signal, untracked, WritableSignal } from '@angular/core';
+import { ChildComponent } from './child/child.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports: [ChildComponent],
   template: `<div>
     <p>Counter Value: {{ counter() }}</p>
     <button (click)="setNewValue()">Set New Value</button>
     <button (click)="updateValue()">Update Value</button>
     <button (click)="changeName()">Change Name</button>
+    <br />
+    <app-child [(selected)]="userSelected" (selectedChange)="selectedChanged($event)" />
   </div>`,
 })
 export class AppComponent {
   counter: WritableSignal<number> = signal(0);
+  userSelected: WritableSignal<boolean> = signal(false);
 
   // Computed
   temperature: WritableSignal<number> = signal(20);
@@ -59,5 +64,9 @@ export class AppComponent {
 
   changeName() {
     this.userName.set('Andres ' + new Date().toLocaleString());
+  }
+
+  selectedChanged(selected: boolean) {
+    console.log(selected);
   }
 }
