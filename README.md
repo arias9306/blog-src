@@ -15,6 +15,9 @@ comes with a LSP for Vim users.
 Add Nx plugins to leverage their code generators and automated, inferred tasks.
 
 ```
+# ng-add
+nx g @angular/material:ng-add --project ngrx-feature
+
 # Add plugin
 npx nx add @nx/react
 

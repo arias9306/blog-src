@@ -21,7 +21,7 @@
             "input": "apps/ngrx-feature/public"
           }
         ],
-        "styles": ["apps/ngrx-feature/src/styles.css"],
+        "styles": ["@angular/material/prebuilt-themes/cyan-orange.css", "apps/ngrx-feature/src/styles.css"],
         "scripts": []
       },
       "configurations": {
