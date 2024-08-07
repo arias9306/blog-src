@@ -1,0 +1,14 @@
+.container {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 65px);
+}

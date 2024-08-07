@@ -1,0 +1,27 @@
+@let data = data$ | async;
+
+<!-- List -->
+@if (data?.isLoading) {
+<div class="spinner">
+  <mat-spinner />
+</div>
+} @else {
+<div class="container">
+  @for (movie of data?.listOfMovies; track movie.key) {
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>{{ movie.title }}</mat-card-title>
+      <mat-card-subtitle>{{ movie.rating }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ movie.sinopsis }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-mini-fab><mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+  } @empty {
+  <span> There are no movies </span>
+  }
+</div>
+}
