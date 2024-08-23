@@ -1,9 +1,16 @@
-import { computed, inject } from '@angular/core';
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { computed, inject, Injectable } from '@angular/core';
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap } from 'rxjs';
+import { pipe, switchMap, tap } from 'rxjs';
 import { ShoppingCarItems } from '../models/shopping-car-item.model';
 import { ShoppingCarService } from '../service/shopping-car.service';
+
+@Injectable({ providedIn: 'root' })
+export class Logger {
+  log(log: string) {
+    console.log(log);
+  }
+}
 
 type ShoppingCarState = {
   items: ShoppingCarItems[];
@@ -31,5 +38,31 @@ export const ShoppingCarStore = signalStore(
       patchState(store, { items: [...store.items(), item] });
     },
     saveItem: rxMethod<ShoppingCarItems>(pipe(switchMap((item) => shoppingCarService.saveItem(item)))),
-  }))
+    loadItems: rxMethod<void>(
+      pipe(
+        switchMap(() => shoppingCarService.loadItems().pipe(tap((result) => patchState(store, { items: [...result] }))))
+      )
+    ),
+  })),
+  withHooks((store) => {
+    const logger = inject(Logger);
+
+    return {
+      onInit() {
+        logger.log('OnInit');
+        store.loadItems();
+      },
+      onDestroy() {
+        logger.log('OnDestroy');
+      },
+    };
+  })
+  // withHooks({
+  //   onInit(store) {
+  //     store.loadItems();
+  //   },
+  //   onDestroy(store) {
+  //     console.log('totalItems on destroy', store.totalItems());
+  //   },
+  // })
 );
