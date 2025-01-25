@@ -5,16 +5,15 @@ import { LoadBooksActions } from './+store/actions';
 import { selectBooks } from './+store/selectors';
 
 @Component({
-  selector: 'app-books',
-  standalone: true,
-  imports: [AsyncPipe, JsonPipe],
-  template: `
+    selector: 'app-books',
+    imports: [AsyncPipe, JsonPipe],
+    template: `
     <h1>Traditional</h1>
     <pre>
     {{ books$ | async | json }}
   </pre
     >
-  `,
+  `
 })
 export class BooksComponent implements OnInit {
   private readonly store = inject(Store);

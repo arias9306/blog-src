@@ -18,14 +18,13 @@ export class IntervalComponent {
 }
 
 @Component({
-  selector: 'app-root-output',
-  standalone: true,
-  imports: [IntervalComponent, AsyncPipe],
-  template: ` <div>
+    selector: 'app-root-output',
+    imports: [IntervalComponent, AsyncPipe],
+    template: ` <div>
     <app-interval />
     <h3>IntervalChange {{ logInterval$ | async }}</h3>
     <h3>NameChange {{ nameChanged$ | async }}</h3>
-  </div>`,
+  </div>`
 })
 export class AppOutputComponent implements OnInit {
   childComponent = viewChild.required(IntervalComponent);

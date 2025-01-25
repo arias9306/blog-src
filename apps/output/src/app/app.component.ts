@@ -4,10 +4,9 @@ import { TimerComponent } from './new/timer.component';
 import { AppOldComponent } from './old/old.component';
 
 @Component({
-  standalone: true,
-  imports: [AppNewComponent, AppOldComponent, TimerComponent],
-  selector: 'app-root',
-  template: `
+    imports: [AppNewComponent, AppOldComponent, TimerComponent],
+    selector: 'app-root',
+    template: `
     <h1>New</h1>
     <app-new-component />
     <br />
@@ -23,7 +22,7 @@ import { AppOldComponent } from './old/old.component';
     <h1>Old</h1>
     <app-old-component />
   `,
-  styles: ``,
+    styles: ``
 })
 export class AppComponent {
   title = 'output';

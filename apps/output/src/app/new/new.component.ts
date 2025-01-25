@@ -16,10 +16,9 @@ export class AppNewChildComponent {
 }
 
 @Component({
-  selector: 'app-new-component',
-  standalone: true,
-  imports: [AppNewChildComponent],
-  template: `<app-new-child-component (deletedClick)="fn($event)" (deletedElement)="fn($event)" />`,
+    selector: 'app-new-component',
+    imports: [AppNewChildComponent],
+    template: `<app-new-child-component (deletedClick)="fn($event)" (deletedElement)="fn($event)" />`
 })
 export class AppNewComponent {
   myComponentRef: Signal<AppNewChildComponent> = viewChild.required(AppNewChildComponent);

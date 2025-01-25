@@ -4,11 +4,10 @@ import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { interval, Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-child',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './child.component.html',
-  styleUrl: './child.component.css',
+    selector: 'app-child',
+    imports: [CommonModule],
+    templateUrl: './child.component.html',
+    styleUrl: './child.component.css'
 })
 export class ChildComponent {
   // @Input({ required: true }) selected!: boolean;

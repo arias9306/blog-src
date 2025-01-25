@@ -10,12 +10,11 @@ import { MovieListActions } from '../store/movie.actions';
 import { MovieFeature } from '../store/movie.reducer';
 
 @Component({
-  selector: 'app-movies-list',
-  standalone: true,
-  imports: [AsyncPipe, MatCardModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule],
-  templateUrl: './movies-list.component.html',
-  styleUrl: './movies-list.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-movies-list',
+    imports: [AsyncPipe, MatCardModule, MatProgressSpinnerModule, MatButtonModule, MatIconModule],
+    templateUrl: './movies-list.component.html',
+    styleUrl: './movies-list.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MoviesListComponent implements OnInit {
   private readonly store = inject(Store);

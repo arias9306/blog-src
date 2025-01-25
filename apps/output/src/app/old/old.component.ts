@@ -16,10 +16,9 @@ export class AppOldChildComponent {
 }
 
 @Component({
-  selector: 'app-old-component',
-  standalone: true,
-  imports: [AppOldChildComponent],
-  template: `<app-old-child-component (deletedClick)="fn($event)" (deletedElement)="fn($event)" />`,
+    selector: 'app-old-component',
+    imports: [AppOldChildComponent],
+    template: `<app-old-child-component (deletedClick)="fn($event)" (deletedElement)="fn($event)" />`
 })
 export class AppOldComponent implements AfterViewInit {
   @ViewChild(AppOldChildComponent) myComponentRef!: AppOldChildComponent;

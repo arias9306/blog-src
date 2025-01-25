@@ -18,10 +18,9 @@ import { SignalComponent } from './signal.component';
 import { ParentIntevalComponent } from './takeuntildestroy2.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [ChildComponent, SignalComponent, AsyncPipe, AppOutputComponent, ParentIntevalComponent],
-  template: `<div>
+    selector: 'app-root',
+    imports: [ChildComponent, SignalComponent, AsyncPipe, AppOutputComponent, ParentIntevalComponent],
+    template: `<div>
     <p>Counter Value: {{ counter() }}</p>
     <button (click)="setNewValue()">Set New Value</button>
     <button (click)="updateValue()">Update Value</button>
@@ -48,7 +47,7 @@ import { ParentIntevalComponent } from './takeuntildestroy2.component';
     <hr />
     <h1>Take Until</h1>
     <app-parent-interval />
-  </div>`,
+  </div>`
 })
 export class AppComponent implements OnInit {
   childComponent = viewChild.required(ChildComponent);

@@ -5,9 +5,8 @@ import { interval, map, of, pipe, tap } from 'rxjs';
 import { ShoppingCarStore } from './store/shopping-car.store';
 
 @Component({
-  selector: 'app-shopping-cart',
-  standalone: true,
-  template: `
+    selector: 'app-shopping-cart',
+    template: `
     <p>Items: {{ items() | json }}</p>
     <p>Loading: {{ isLoading() }}</p>
 
@@ -23,8 +22,8 @@ import { ShoppingCarStore } from './store/shopping-car.store';
 
     <button (click)="add()">add</button>
   `,
-  imports: [JsonPipe],
-  providers: [ShoppingCarStore],
+    imports: [JsonPipe],
+    providers: [ShoppingCarStore]
 })
 export class ShoppingCarComponent implements OnInit {
   private readonly shoppingCarStore = inject(ShoppingCarStore);

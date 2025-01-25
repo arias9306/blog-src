@@ -5,10 +5,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
-  selector: 'app-topbar',
-  templateUrl: './topbar.component.html',
-  styleUrl: './topbar.component.css',
-  standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule],
+    selector: 'app-topbar',
+    templateUrl: './topbar.component.html',
+    styleUrl: './topbar.component.css',
+    imports: [MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule]
 })
 export class TopbarComponent {}

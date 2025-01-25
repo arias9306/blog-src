@@ -5,10 +5,9 @@ import { BehaviorSubject, fromEvent, interval, map, Subject, takeUntil } from 'r
 import { Signal2Component } from './signal2.component';
 
 @Component({
-  selector: 'app-signal',
-  standalone: true,
-  imports: [AsyncPipe, JsonPipe, Signal2Component],
-  template: `
+    selector: 'app-signal',
+    imports: [AsyncPipe, JsonPipe, Signal2Component],
+    template: `
     <hr />
     <div>Signal {{ counter() }}</div>
     @if (show) {
@@ -38,7 +37,7 @@ import { Signal2Component } from './signal2.component';
 
     <hr />
     <app-signal2 />
-  `,
+  `
 })
 export class SignalComponent implements OnInit {
   show = true;
