@@ -13,15 +13,15 @@ export class ChildIntervalComponent {
 }
 
 @Component({
-    selector: 'app-parent-interval',
-    imports: [ChildIntervalComponent, AsyncPipe],
-    template: ` <div>
+  selector: 'app-parent-interval',
+  imports: [ChildIntervalComponent],
+  template: ` <div>
     @if (visible()) {
     <app-child-interval />
     }
     <br />
     <button (click)="hideOrShow()">Destroy Child</button>
-  </div>`
+  </div>`,
 })
 export class ParentIntevalComponent {
   childComponent = viewChild(ChildIntervalComponent);

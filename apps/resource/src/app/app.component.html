@@ -1,2 +1,13 @@
-<app-nx-welcome></app-nx-welcome>
 <router-outlet></router-outlet>
+
+Error: {{ jsonResource.error() }}
+<hr />
+Status: {{ jsonResource.status() }}
+<hr />
+Loading: {{ jsonResource.isLoading() }}
+<hr />
+<button (click)="jsonResource.reload()">Reload</button>
+<hr />
+<pre>
+    {{ jsonResource.value() | json }}
+</pre>

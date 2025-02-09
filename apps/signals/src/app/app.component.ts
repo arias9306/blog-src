@@ -1,27 +1,26 @@
 import { AsyncPipe } from '@angular/common';
-import {
-  Component,
-  computed,
-  effect,
-  OnInit,
-  Signal,
-  signal,
-  untracked,
-  viewChild,
-  WritableSignal,
-} from '@angular/core';
-import { outputToObservable } from '@angular/core/rxjs-interop';
+import { Component, computed, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ChildComponent } from './child/child.component';
 import { AppOutputComponent } from './output.component';
 import { SignalComponent } from './signal.component';
 import { ParentIntevalComponent } from './takeuntildestroy2.component';
+import { CharacterCreatorComponent } from './linked-signal.component';
+import { MissionLogComponent } from './resource/mission-log.component';
 
 @Component({
-    selector: 'app-root',
-    imports: [ChildComponent, SignalComponent, AsyncPipe, AppOutputComponent, ParentIntevalComponent],
-    template: `<div>
-    <p>Counter Value: {{ counter() }}</p>
+  selector: 'app-root',
+  imports: [
+    ChildComponent,
+    SignalComponent,
+    AsyncPipe,
+    AppOutputComponent,
+    ParentIntevalComponent,
+    CharacterCreatorComponent,
+    MissionLogComponent,
+  ],
+  template: `<div>
+    <!-- <p>Counter Value: {{ counter() }}</p>
     <button (click)="setNewValue()">Set New Value</button>
     <button (click)="updateValue()">Update Value</button>
     <button (click)="changeName()">Change Name</button>
@@ -47,17 +46,23 @@ import { ParentIntevalComponent } from './takeuntildestroy2.component';
     <hr />
     <h1>Take Until</h1>
     <app-parent-interval />
-  </div>`
+
+    <hr /> -->
+    <!-- <h1>Linked Signal</h1>
+    <app-linked-signal /> -->
+    <app-mission-log />
+  </div>`,
 })
 export class AppComponent implements OnInit {
-  childComponent = viewChild.required(ChildComponent);
+  // childComponent = viewChild.required(ChildComponent);
   counter: WritableSignal<number> = signal(0);
   userSelected: WritableSignal<boolean> = signal(false);
 
   logInterval$!: Observable<string | undefined>;
 
   ngOnInit(): void {
-    this.logInterval$ = outputToObservable(this.childComponent().nameChange);
+    // this.logInterval$ = outputToObservable(this.childComponent().nameChange);
+    console.log('NgOnit');
   }
 
   destroySignal = true;
@@ -83,24 +88,6 @@ export class AppComponent implements OnInit {
 
   // Effects
   userName: WritableSignal<string> = signal('andres');
-  private logUserName = effect(() => {
-    console.log(`User set to ${this.userName()} and the counter is ${this.counter()}`);
-  });
-
-  private logUserNameCleanUp = effect((onCleanup) => {
-    const user = this.userName();
-    const timer = setTimeout(() => {
-      console.log(`1 second ago, the user became ${user}`);
-    }, 1000);
-
-    onCleanup(() => {
-      clearTimeout(timer);
-    });
-  });
-
-  private logUserNameUntracked = effect(() => {
-    console.log(`User set to ${this.userName()} and the counter is ${untracked(this.counter)}`);
-  });
 
   setNewValue() {
     this.counter.set(150);
